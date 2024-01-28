@@ -5,12 +5,12 @@ import TodoList from "../components/TodoList";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-interface ITodoType {
-  id: string | number;
-  isDone: boolean;
-  task: string;
-  todo?: string;
-}
+// interface ITodoType {
+//   id: string | number;
+//   isDone: boolean;
+//   task: string;
+//   todo?: string;
+// }
 
 const url: string = import.meta.env.VITE_BASE_URL;
 
@@ -21,23 +21,42 @@ const Home = () => {
     try {
       const { data } = await axios.get<ITodoType[]>(url);
       setTodo(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-//   type AddFunc = (text:string) => Promise<void>
+  //   type AddFunc = (text:string) => Promise<void>
 
-  const todoAdd:AddFunc = async (text) => {
+  const todoAdd: AddFunc = async (text) => {
     try {
-        await axios.post(url, {task:text, isDone:false})
+      await axios.post(url, { task: text, isDone: false });
     } catch (error) {
-        console.log(error);
+      console.log(error);
     } finally {
-        getTodos()
+      getTodos();
     }
-  }
+  };
+
+  const toggleTodo: ToggleFunc = async (todo) => {
+    try {
+      await axios.put(`${url}/${todo.id}`, { ...todo, isDone: !todo.isDone });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      getTodos();
+    }
+  };
+
+  const deleteTodo: DeleteFunc = async (id) => {
+    try {
+      await axios.delete(`${url}/${id}`);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      getTodos();
+    }
+  };
 
   useEffect(() => {
     getTodos();
@@ -49,7 +68,7 @@ const Home = () => {
         TodoApp with TypeScript
       </Typography>
       <AddTodo todoAdd={todoAdd} />
-      <TodoList />
+      <TodoList todo={todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </Container>
   );
 };
