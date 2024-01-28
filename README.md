@@ -1,30 +1,78 @@
-# React + TypeScript + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
+  <img src="./src/assets/todo-ts.gif" />
+</div>
 
-Currently, two official plugins are available:
+## About the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project, which I created using Vite-React-TypeScript, includes a to-do list application where users can add and delete tasks.
 
-## Expanding the ESLint configuration
+## Table of Contents
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [Technologies Used](#technologies-used)
+- [Usage](#usage)
+- [Project Skeleton](#project-skeleton)
+- [Screenshots](#screenshots)
 
-- Configure the top-level `parserOptions` property like this:
+## Live Demo
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+[Todo App]()
+
+
+## Technologies Used
+
+- React
+- TypeScript
+- Vite
+- Axios for API requests
+- Styling with [Material UI](https://mui.com/)
+- [Sweetalert2](https://sweetalert2.github.io/) for alert 
+- [Mockapi](https://mockapi.io//) for API 
+
+## Usage
+
+- Type your task in the input section to add a new task.
+- Click the "ADD" button after entering your task.
+- When you have completed a task, you can click on the completed task and move it to the completed section or send it back to the to-do section.
+- You can delete a task by clicking on the trash bin icon.
+
+## Project Skeleton
+
+```     
+SOLUTION
+├── src
+│    ├── App.tsx
+│    ├── main.tsx
+│    ├── assets
+│    ├── components
+│    │   ├── AddTodo.tsx
+│    │   ├── Items.tsx
+│    │   └── TodoList.tsx
+│    ├── pages
+│    │   └── Home.tsx
+│    ├── helper
+│    │   └── sweetalert.ts
+│    ├── types.d.ts
+│    └── vite-env.d.ts
+├── package.json
+├── index.html
+├── .gitignore
+├── README.md
+├── vite.config.ts
+├── tsconfig.node.json
+├── tsconfig.json
+└── pnpm-lock.yaml
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Screenshots
+
+<div align="center">
+  <img src="./src/assets/Screenshot_1.jpg"  width="35%" height="500" />
+  <img src="./src/assets/Screenshot_2.jpg"  width="55%" height="600" />
+  <img src="./src/assets/Screenshot_3.jpg"  width="90.5%" height="450" />
+</div>
+
+## Compatibility
+
+The project is compatible with both wide-screen computers and mobile devices.
