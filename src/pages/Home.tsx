@@ -4,6 +4,7 @@ import AddTodo from "../components/AddTodo";
 import TodoList from "../components/TodoList";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { SweetAlertIcons, notify } from "../helper/sweetalert";
 
 // interface ITodoType {
 //   id: string | number;
@@ -31,8 +32,10 @@ const Home = () => {
   const todoAdd: AddFunc = async (text) => {
     try {
       await axios.post(url, { task: text, isDone: false });
+      notify("Todo Successfully Added", SweetAlertIcons.SUCCESS)
     } catch (error) {
       console.log(error);
+      notify("Failed to Add Todo", SweetAlertIcons.ERROR)
     } finally {
       getTodos();
     }
@@ -41,8 +44,10 @@ const Home = () => {
   const toggleTodo: ToggleFunc = async (todo) => {
     try {
       await axios.put(`${url}/${todo.id}`, { ...todo, isDone: !todo.isDone });
+      notify("The Process was Successful", SweetAlertIcons.SUCCESS)
     } catch (error) {
       console.log(error);
+      notify("Process Failed", SweetAlertIcons.ERROR)
     } finally {
       getTodos();
     }
@@ -51,8 +56,10 @@ const Home = () => {
   const deleteTodo: DeleteFunc = async (id) => {
     try {
       await axios.delete(`${url}/${id}`);
+      notify("Todo Deleted Successfully", SweetAlertIcons.SUCCESS)
     } catch (error) {
       console.log(error);
+      notify("Todo Failed to Delete", SweetAlertIcons.ERROR)
     } finally {
       getTodos();
     }
